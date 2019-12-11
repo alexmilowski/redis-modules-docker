@@ -1,11 +1,11 @@
 # redis-modules-docker
 
-A simple utility for building docker images for Redis with various module support. The utility generates a Dockerfile that can be used to build a target image from the source images that contains all the modules, their configuration, and configures the Redis server to load the modules.
+This repository contains a simple utility for building Docker images for Redis with various module support. The utility generates a Dockerfile that can be used to build a target image from the source images that contains all each module, specify their configuration, and configures the Redis server to load the modules.
 
-For example, you can build your own image with RedisGraph and RedisGears via:
+For example, you can build your own image with RedisGraph and RedisGears (see [modules.yaml](modules.yaml)) via:
 
 ```bash
-% python dockerfile.py modules > Dockerfile
+% python dockerfile.py modules.yaml > Dockerfile
 % docker build -t redismodules .
 ```
 
