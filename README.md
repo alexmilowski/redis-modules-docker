@@ -60,9 +60,9 @@ script: |
 command: [ "--loadmodule", "/opt/redislabs/lib/modules/redisgraph.so" ]
 ```
 
-The `artifacts` property specified a sequence of source files to copy from the
+The `artifacts` property specifies a sequence of source files to copy from the
 image (e.g., the shared library for the module). Minimally, the `source`
-property must specify the location of the file on the base image. Optionally, a
+property must specify the location of the file from the module image. Optionally, a
 `target` property can specified the destination on the target. The `source`
 and `target` values follow the same rules as the
 [Docker COPY](https://docs.docker.com/engine/reference/builder/#copy) command.
