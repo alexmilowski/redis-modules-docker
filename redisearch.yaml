@@ -1,0 +1,6 @@
+kind: Module
+name: redisearch
+image: redislabs/redisearch:latest
+artifacts:
+  - source: /usr/lib/redis/modules/redisearch.so
+command: [ "--loadmodule", "/opt/redislabs/lib/modules/redisearch.so" ]

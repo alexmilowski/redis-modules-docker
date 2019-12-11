@@ -1,0 +1,21 @@
+FROM redislabs/redisgraph:edge as redisgraph
+FROM redislabs/redisgears:latest as redisgears
+
+# Target image
+FROM redis:latest
+ENV REDIS_MODULES /opt/redislabs/lib/modules
+RUN mkdir -p $REDIS_MODULES/
+WORKDIR /data
+
+# redisgraph module
+RUN set -ex;\
+    apt-get update;\
+    apt-get install -y --no-install-recommends libgomp1;
+COPY --from=redisgraph "/usr/lib/redis/modules/redisgraph.so" "$REDIS_MODULES/"
+
+# redisgears module
+COPY --from=redisgears "$REDIS_MODULES/redisgears.so" "$REDIS_MODULES/"
+COPY --from=redisgears "$REDIS_MODULES/python3" "$REDIS_MODULES/python3"
+
+EXPOSE 6379
+CMD [ "--loadmodule", "/opt/redislabs/lib/modules/redisgraph.so", "--loadmodule", "/opt/redislabs/lib/modules/redisgears.so", "PythonHomeDir", "/opt/redislabs/lib/modules/python3" ]

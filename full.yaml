@@ -1,0 +1,27 @@
+kind: Target
+baseimage: redis:latest
+expose: 6379
+script: |
+  ENV REDIS_MODULES /opt/redislabs/lib/modules
+  RUN mkdir -p $REDIS_MODULES/
+  WORKDIR /data
+libdir: "$REDIS_MODULES/"
+modules:
+- kind: Module
+  name: redisgraph
+  image: redislabs/redisgraph:edge
+  artifacts:
+    - source: "/usr/lib/redis/modules/redisgraph.so"
+  script: |
+    RUN set -ex;\
+        apt-get update;\
+        apt-get install -y --no-install-recommends libgomp1;
+  command: [ "--loadmodule", "/opt/redislabs/lib/modules/redisgraph.so" ]
+- kind: Module
+  name: redisgears
+  image: redislabs/redisgears:latest
+  artifacts:
+    - source: "$REDIS_MODULES/redisgears.so"
+    - source: "$REDIS_MODULES/python3"
+      target: "$REDIS_MODULES/python3"
+  command: [ "--loadmodule", "/opt/redislabs/lib/modules/redisgears.so", "PythonHomeDir", "/opt/redislabs/lib/modules/python3" ]

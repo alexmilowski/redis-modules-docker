@@ -1,0 +1,6 @@
+kind: Module
+name: redisai
+image: redisai/redisai:latest
+artifacts:
+  - source: /usr/lib/redis/modules/redisai.so
+command: [ "--loadmodule", "/opt/redislabs/lib/modules/redisai.so" ]
