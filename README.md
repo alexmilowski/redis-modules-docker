@@ -37,7 +37,7 @@ modules. The simplest usage is to describe a set of modules to be added.
 From that description, the program will generate necessary commands to build
 a Docker image that will run Redis with all the specified modules.
 
-# Describing Modules
+## Describing Modules
 
 Modules can be described in a YAML file either as a single module or a sequence
 of modules.  A module must of a `kind` property with a value of `Module`
@@ -78,7 +78,7 @@ artifacts:
 An optional `script` property can specify additional docker commands to run
 for the target image.
 
-# Describing Targets
+## Describing Targets
 
 There are a number of operations performed to product a working target image.
 This process can be controlled by using a YAML object with a `kind` property
@@ -91,3 +91,8 @@ The following properties may be specified:
  * `script` - the build script to run for the base image
  * `libdir` - the library directory to use during the build
  * `modules` - a sequence of Modules (kind: Module) to include in the target
+
+# Using Modules with Enterprise
+
+Modules need to be packaged for Redis Enterprise to load the module. See [modules](modules)
+for more information.

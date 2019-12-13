@@ -5,6 +5,7 @@ import yaml
 parser = argparse.ArgumentParser(description="Redis module dockerfile generator")
 parser.add_argument('--baseimage',help='The base image for the target',default='redis:latest')
 parser.add_argument('--exclude',help='a module to exclude',action='append')
+parser.add_argument('--module-image',help='a module image override',nargs=2,action='append')
 parser.add_argument('--libdir',help='the libdir for modules',default='$REDIS_MODULES/')
 parser.add_argument('--output',help='An output file for the result')
 parser.add_argument('--expose',help='The port to expose',type=int,default=6379)
@@ -21,6 +22,11 @@ else:
    exclusions = set(args.exclude)
 
 sources = {}
+
+module_images = {}
+if args.module_image is not None:
+   for module,image in args.module_image:
+      module_images[module] = image
 
 target_script = """ENV REDIS_MODULES /opt/redislabs/lib/modules
 RUN mkdir -p $REDIS_MODULES/
@@ -48,6 +54,10 @@ def load_modules(source,target,*module_list):
          continue
       if name in exclusions:
          continue
+      image = module_images.get(name,module.get('image',None))
+      if image is None:
+         quit('Missing image for module {}',name)
+      module['image'] = image
       target[name] = module
 
 for spec_source in args.files:
