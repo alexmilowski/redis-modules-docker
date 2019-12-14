@@ -2,7 +2,7 @@
 
 ## An Example: Adding RedisGears
 
-The follow commands will build a RAMP packaging of RedisGears for use in
+The follow commands will build a [RAMP packaging](https://github.com/RedisLabs/RAMP) of RedisGears for use in
 Redis Enterprise. Afterwards, it will build a variant of Redis Enterprise image
 with RedisGears packaged.
 
