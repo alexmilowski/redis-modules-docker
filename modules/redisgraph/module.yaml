@@ -1,4 +1,4 @@
 - kind: Module
-  name: redisgears
+  name: redisgraph
   artifacts:
     - source: "/usr/lib/redis/modules/redisgraph.Linux-x86_64.1.99.7.zip"

@@ -45,7 +45,7 @@ The process is as follows:
     python dockerfile.py --baseimage redislabs/redis \
       --module-image redisgears yourdockerid/redisgears: \
       --module-image redisgraph yourdockerid/redisgraph: \
-      modules/redisgears/module.yaml modules modules/redisgraph/module.yaml > Dockerfile
+      modules/redisgears/module.yaml modules/redisgraph/module.yaml > Dockerfile
     docker build -t yourdockerid/rp+gears+graph .
     ```
 
