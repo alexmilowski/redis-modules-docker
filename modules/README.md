@@ -34,7 +34,7 @@ The process is as follows:
     ```bash
     cd modules/redisgears
     ../ramp.sh https://github.com/RedisGears/RedisGears.git tags/v0.4.0
-    docker build -t ${DOCKERID}/redisgear .
+    docker build -t ${DOCKERID}/redisgears .
     cd ../..
     ```
  1. Package the RedisGraph module:
