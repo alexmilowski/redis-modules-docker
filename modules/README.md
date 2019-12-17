@@ -23,12 +23,18 @@ Afterwards, we'll use the `dockerfile.py` and `docker build` together to build a
 
 The process is as follows:
 
+ 1. Setup your docker id:
+
+    ```bash
+    DOCKERID=yourdockerid
+    ```
+
  1. Package the RedisGears module:
 
     ```bash
     cd modules/redisgears
     ../ramp.sh https://github.com/RedisGears/RedisGears.git tags/v0.4.0
-    docker build -t yourdockerid/redisgear .
+    docker build -t ${DOCKERID}/redisgear .
     cd ../..
     ```
  1. Package the RedisGraph module:
@@ -36,17 +42,17 @@ The process is as follows:
     ```bash
     cd modules/redisgraph
     ../ramp.sh https://github.com/RedisGears/RedisGears.git tags/v1.99.7
-    docker build -t yourdockerid/redisgraph .
+    docker build -t ${DOCKERID}/redisgraph .
     cd ../..
     ```
  1. Build the Redis Enterprise variant image with the two modules:
 
     ```bash
     python dockerfile.py --baseimage redislabs/redis \
-      --module-image redisgears yourdockerid/redisgears: \
-      --module-image redisgraph yourdockerid/redisgraph: \
+      --module-image redisgears ${DOCKERID}/redisgears:latest \
+      --module-image redisgraph ${DOCKERID}/redisgraph:latest \
       modules/redisgears/module.yaml modules/redisgraph/module.yaml > Dockerfile
-    docker build -t yourdockerid/rp+gears+graph .
+    docker build -t ${DOCKERID}/rp.gears.graph .
     ```
 
 The resulting image can be used in place of `redislabs/redis` but keep in mind
