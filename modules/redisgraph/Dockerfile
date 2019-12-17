@@ -1,4 +1,4 @@
-ARG VERSION=1.99.7
+ARG VERSION=1.99.1
 FROM redislabs/redisgraph:$VERSION as redisgraph
 
 ARG VERSION

@@ -34,6 +34,9 @@ The process is as follows:
     ```bash
     cd modules/redisgears
     ../ramp.sh https://github.com/RedisGears/RedisGears.git tags/v0.4.0
+    # hack for ramp min version
+    sed s/5.5/5.2/g ramp.yml > ramp.fixed.yml
+    cp ramp.fixed.yml ramp.yml
     docker build -t ${DOCKERID}/redisgears .
     cd ../..
     ```
@@ -41,7 +44,7 @@ The process is as follows:
 
     ```bash
     cd modules/redisgraph
-    ../ramp.sh https://github.com/RedisGears/RedisGears.git tags/v1.99.7
+    ../ramp.sh https://github.com/RedisGraph/RedisGraph.git tags/v1.99.0
     docker build -t ${DOCKERID}/redisgraph .
     cd ../..
     ```
