@@ -52,7 +52,7 @@ The process is as follows:
       --module-image redisgears ${DOCKERID}/redisgears:latest \
       --module-image redisgraph ${DOCKERID}/redisgraph:latest \
       modules/redisgears/module.yaml modules/redisgraph/module.yaml > Dockerfile
-    docker build -t ${DOCKERID}/rp.gears.graph .
+    docker build -t ${DOCKERID}/rep.gears.graph .
     ```
 
 The resulting image can be used in place of `redislabs/redis` but keep in mind
