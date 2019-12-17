@@ -1,6 +1,7 @@
 ARG VERSION=0.4.0
 FROM redislabs/redisgears:$VERSION as redisgears
 
+ARG VERSION
 ARG ARCH=x86_64
 ARG OS=Linux
 ARG MODULES_DIR=/opt/redislabs/lib/modules

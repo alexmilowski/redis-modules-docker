@@ -1,6 +1,7 @@
 ARG VERSION=1.99.7
 FROM redislabs/redisgraph:$VERSION as redisgraph
 
+ARG VERSION
 ARG ARCH=x86_64
 ARG OS=Linux
 ARG MODULES_DIR=/usr/lib/redis/modules
