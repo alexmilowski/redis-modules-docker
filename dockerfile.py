@@ -102,7 +102,8 @@ for _, (name, module) in enumerate(sources.items()):
       if source is None:
          quit('Artifact {} in {} is missing a source.',index,name)
       target = artifact.get('target',args.libdir)
-      output.write('COPY --from={name} "{source}" "{target}"\n'.format(name=name,source=source,target=target))
+      chown = '--chown={}'.format(artifact['user']) if 'user' in artifact else ''
+      output.write('COPY --from={name} {chown} "{source}" "{target}"\n'.format(name=name,chown=chown,source=source,target=target))
    output.write('\n')
 
 output.write('EXPOSE {port}\n'.format(port=str(args.expose)))

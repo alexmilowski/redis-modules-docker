@@ -2,5 +2,7 @@
   name: redisgears
   artifacts:
     - source: "$REDIS_MODULES/redisgears.Linux-x86_64.0.4.0.zip"
+      user: redislabs:redislabs
     - source: "$REDIS_MODULES/python3"
       target: "$REDIS_MODULES/python3"
+      user: redislabs:redislabs
