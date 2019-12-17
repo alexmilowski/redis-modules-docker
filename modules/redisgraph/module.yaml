@@ -1,4 +1,6 @@
 - kind: Module
   name: redisgraph
+  script: |
+    RUN rm -f $REDIS_MODULES/redisgraph.Linux-x86_64.1.2.2.zip
   artifacts:
     - source: "/usr/lib/redis/modules/redisgraph.Linux-x86_64.1.99.7.zip"
